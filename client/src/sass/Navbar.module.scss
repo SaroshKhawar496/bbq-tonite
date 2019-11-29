@@ -8,15 +8,14 @@
   &:hover {
     color: $navHoverColor;
     text-decoration: none;
+    font-size: 1.6rem;
+    transition: all ease-in-out 0.25s;
   }
-}
-
-.navbar-toggler-icon {
-  background-color: yellow;
 }
 
 .navBar {
   background: $navbar-bg;
+  
 }
 
 .navLinks {

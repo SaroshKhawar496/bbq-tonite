@@ -6,7 +6,7 @@ import styles from "../sass/Navbar.module.scss";
 const NavBar = () => {
   return (
     // <Container className="ml-1 mr-0">
-    <Navbar expand="md" className={styles.navBar}>
+    <Navbar expand="md" className={styles.navBar} fixed="static">
       <NavbarBrand>
         <Link className={styles.brand} to="/">
           Bar BQ Tonite
