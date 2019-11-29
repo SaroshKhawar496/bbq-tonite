@@ -9,7 +9,7 @@ const NavBar = () => {
     <Navbar expand="md" className={styles.navBar}>
       <NavbarBrand>
         <Link className={styles.brand} to="/">
-          BarB BQ Tonite
+          Bar BQ Tonite
         </Link>
       </NavbarBrand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
