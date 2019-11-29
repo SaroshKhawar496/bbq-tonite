@@ -1,0 +1,35 @@
+@import "./variables";
+
+.brand {
+  color: $navHoverColor;
+  font-size: 1.4rem;
+  &:hover {
+    color: $navHoverColor;
+    text-decoration: none;
+  }
+}
+
+.navbar-toggler-icon {
+  background-color: yellow;
+}
+
+.navBar {
+  background: $navbar-bg;
+}
+
+.navLinks {
+  font: "Lora";
+  font-style: italic;
+}
+
+.navLink {
+  color: $navLinkColor;
+  text-decoration: none;
+  &:hover {
+    color: $navLinkColor;
+    text-decoration: none;
+    border-bottom: 2px solid $navHoverColor;
+    font-size: 1.1rem;
+    transition: all ease-in-out 0.2s;
+  }
+}
