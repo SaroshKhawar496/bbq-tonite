@@ -32,6 +32,8 @@ class GoogleReviews extends Component {
                   <p>{review.text}</p>
                 </div>
               );
+            } else {
+              return null;
             }
           })}
         </div>
