@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import styles from "../sass/GoogleReviews.module.scss";
 
 class GoogleReviews extends Component {
   state = {
@@ -22,7 +23,7 @@ class GoogleReviews extends Component {
   render() {
     return (
       <div>
-        <h1>This is Google Reviews</h1>
+        <h1 className={styles.heading}>Reviews</h1>
         <div>
           {this.state.reviews.map(review => {
             if (review.rating >= 4) {

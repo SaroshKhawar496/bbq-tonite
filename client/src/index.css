@@ -25,3 +25,7 @@ a {
 .navbar-toggler {
   background: white;
 }
+
+html {
+  scroll-behavior: smooth;
+}

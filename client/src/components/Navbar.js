@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Container, Navbar, NavbarBrand, Nav } from "react-bootstrap";
+import { Navbar, NavbarBrand, Nav } from "react-bootstrap";
 import styles from "../sass/Navbar.module.scss";
 
 const NavBar = () => {
@@ -18,26 +18,17 @@ const NavBar = () => {
         className={[styles.menuBtn, "justify-content-end"]}
       >
         <Nav className={styles.navLinks}>
-          <Nav.Link>
-            <Link className={styles.navLink} to="/menu">
-              Menu
-            </Link>
+          
+          <Nav.Link as={Link} to="/menu">
+            <span className={styles.navLink}>Menu</span>
           </Nav.Link>
 
-          <Nav.Link>
-            <Link className={styles.navLink} to="/about">
-              About Us
-            </Link>
+          <Nav.Link as={Link} to="/location">
+            <span className={styles.navLink}>Location</span>
           </Nav.Link>
-          <Nav.Link>
-            <Link className={styles.navLink} to="/location">
-              Location
-            </Link>
-          </Nav.Link>
-          <Nav.Link>
-            <Link className={styles.navLink} to="/reservation">
-              Reservation
-            </Link>
+
+          <Nav.Link as={Link} to="/reservation">
+            <span className={styles.navLink}>Reservation</span>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>

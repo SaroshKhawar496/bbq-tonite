@@ -153,7 +153,7 @@ export default class Menu extends Component {
       <div>
         <section className={styles.mainSection}>
           <div className={styles.heroText}>
-            <h2 className={styles.mainTitle}>Taste Our Menu</h2>
+            <h2 className={styles.mainTitle}>Excite Your Senses</h2>
           </div>
         </section>
         <section className={styles.menuBg}>

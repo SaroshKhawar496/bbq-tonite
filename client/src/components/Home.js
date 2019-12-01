@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import styles from "../sass/Home.module.scss";
 import GoogleReviews from "../containers/GoogleReviews";
-
-
+import AboutUs from "../components/About";
 
 export default class Home extends Component {
   render() {
@@ -14,7 +13,10 @@ export default class Home extends Component {
             <h3>Flavor Worth Having</h3>
           </div>
         </section>
-        <GoogleReviews />
+        <section className={styles.container}>
+          <AboutUs />
+          <GoogleReviews />
+        </section>
       </div>
     );
   }
