@@ -1,1 +1,62 @@
 @import "./variables";
+
+.locationItemBox {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  //   flex: 1
+}
+
+.addressBox {
+  // display: flex;
+}
+.addressTextBox {
+  padding-left: 1rem;
+  margin-bottom: 0;
+}
+.addressText {
+  font-family: "Lora";
+  font-size: 1.2rem;
+}
+.icon {
+  font-size: 1.4rem;
+  color: $navHoverColor;
+  margin-right: 1rem;
+}
+
+.timingsBox {
+  padding-top: 0.7rem;
+  margin-left: 1rem;
+  h3 {
+    font-family: "Roboto";
+    font-size: 1.6rem;
+  }
+}
+
+.timings {
+  font-family: "Lora";
+  font-size: 1.3rem;
+  & > .day {
+    font-size: 1.4rem;
+    font-weight: bold;
+  }
+}
+
+@media (min-width: 767px) {
+  .locationItemBox {
+    flex: 1;
+    &:nth-child(1) {
+      border-right: 2px solid $navHoverColor;
+    }
+  }
+}
+
+@media (max-width: 766px) {
+    .locationItemBox {
+        width: 100%;
+      
+      &:nth-child(1) {
+        border-bottom: 2px solid $navHoverColor;
+      }
+    }
+  }
+  

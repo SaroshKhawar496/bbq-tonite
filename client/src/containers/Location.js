@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { createClient } from "contentful";
 import LocationItem from "../components/LocationItem";
+import styles from "../sass/Location.module.scss";
 
 var client = createClient({
   space: "16wwcbfuof0f",
@@ -35,12 +36,19 @@ export default class Location extends Component {
         province={item.fields.povince}
         postalCode={item.fields.postalCode}
         hours={item.fields.hours}
+        phone={item.fields.phone}
       />
     ));
     return (
       <div>
-        <h1>Location</h1>
-        {locations}
+        <section className={styles.mainSection}>
+          <div className={styles.heroText}>
+            <h2 className={styles.mainTitle}>Find Us At</h2>
+          </div>
+        </section>
+        <section className={styles.locationsBg}>
+          <div className={styles.locationsContainer}>{locations}</div>
+        </section>
       </div>
     );
   }
