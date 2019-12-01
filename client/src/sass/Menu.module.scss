@@ -1,0 +1,59 @@
+@import "./variables";
+
+.mainSection {
+  background: url("../images//meat-skewers.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  position: relative;
+
+  &::after {
+    content: ""; // ::before and ::after both require content
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(100deg, #000000, #33d0ff);
+    opacity: 0.2;
+    z-index: 1;
+  }
+  & > * {
+    z-index: 100000;
+  }
+}
+.heroText {
+  position: absolute;
+  top: 60%;
+  right: 40%;
+  text-align: center;
+  transform: translateY(-60%);
+
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+  }
+}
+
+.menuContainer {
+  border: 2px solid $navHoverColor;
+  margin: 2rem;
+}
+
+.menuCategory {
+  text-align: center;
+  // font-family: 'Roboto';
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  font-size: 2rem;
+}
+.menuBg {
+  background: #d6d6d6;
+  display: flex;
+}

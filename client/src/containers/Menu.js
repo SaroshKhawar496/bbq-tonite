@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { createClient } from "contentful";
 import MenuItem from "../components/MenuItem";
+import styles from "../sass/Menu.module.scss";
 
 var client = createClient({
   space: "16wwcbfuof0f",
@@ -150,19 +151,27 @@ export default class Menu extends Component {
 
     return (
       <div>
-        <h1>Menu</h1>
-        <h2>Starters</h2>
-        {starters}
-        <h2>Grill</h2>
-        {grill}
-        <h2>Rice</h2>
-        {rice}
-        <h2>Curries</h2>
-        {curries}
-        <h2>Drinks</h2>
-        {drinks}
-        <h2>Desserts</h2>
-        {desserts}
+        <section className={styles.mainSection}>
+          <div className={styles.heroText}>
+            <h2 className={styles.mainTitle}>Taste Our Menu</h2>
+          </div>
+        </section>
+        <section className={styles.menuBg}>
+          <div className={styles.menuContainer}>
+            <h2 className={styles.menuCategory}>Starters</h2>
+            {starters}
+            <h2 className={styles.menuCategory}>Grill</h2>
+            {grill}
+            <h2 className={styles.menuCategory}>Rice</h2>
+            {rice}
+            <h2 className={styles.menuCategory}>Curries</h2>
+            {curries}
+            <h2 className={styles.menuCategory}>Drinks</h2>
+            {drinks}
+            <h2 className={styles.menuCategory}>Desserts</h2>
+            {desserts}
+          </div>
+        </section>
       </div>
     );
   }

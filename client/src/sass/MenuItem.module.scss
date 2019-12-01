@@ -1,0 +1,32 @@
+@import "./variables";
+
+.menuItemBox {
+  border-top: 1px dashed $navHoverColor;
+  border-bottom: 1px dashed $navHoverColor;
+  margin-top: 1rem;
+}
+
+.detailsBox {
+  display: flex;
+  align-content: center;
+  //   padding-left: 1rem;
+}
+
+.dishTitle {
+  font-size: 1.6rem;
+  font-family: "Roboto";
+  padding-left: 0.8rem;
+}
+
+.dishDesc {
+  font-family: "Lora";
+  font-style: italic;
+  font-size: 1.3rem;
+  max-width: 80%;
+  padding-left: 0.8rem;
+}
+.dishPrice {
+  margin-left: auto;
+  font-size: 1.3rem;
+  padding-right: 1rem;
+}
