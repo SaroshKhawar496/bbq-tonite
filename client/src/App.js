@@ -8,6 +8,7 @@ import Reservation from "./components/Reservation";
 
 import Location from "./containers/Location";
 import Menu from "./containers/Menu";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/location" component={Location} />
           <Route path="/reservation" component={Reservation} />
         </Switch>
+        <Footer />
       </>
     </BrowserRouter>
   );

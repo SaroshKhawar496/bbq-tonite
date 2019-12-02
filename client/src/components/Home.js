@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styles from "../sass/Home.module.scss";
 import GoogleReviews from "../containers/GoogleReviews";
 import AboutUs from "../components/About";
-import Footer from "../components/Footer";
 
 export default class Home extends Component {
   render() {
@@ -18,7 +17,7 @@ export default class Home extends Component {
           <AboutUs />
           <GoogleReviews />
         </section>
-        <Footer />
+        
       </div>
     );
   }
