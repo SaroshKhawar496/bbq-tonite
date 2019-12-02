@@ -18,7 +18,7 @@
   font-size: 1.2rem;
 }
 .icon {
-  font-size: 1.4rem;
+  font-size: $icon-size;
   color: $navHoverColor;
   margin-right: 1rem;
 }
@@ -51,12 +51,11 @@
 }
 
 @media (max-width: 766px) {
-    .locationItemBox {
-        width: 100%;
-      
-      &:nth-child(1) {
-        border-bottom: 2px solid $navHoverColor;
-      }
+  .locationItemBox {
+    width: 100%;
+
+    &:nth-child(1) {
+      border-bottom: 2px solid $navHoverColor;
     }
   }
-  
+}

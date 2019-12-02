@@ -1,0 +1,49 @@
+@import "./variables";
+
+.container{
+  display: flex;
+  flex-flow: column;
+  // justify-content: center;
+  align-items: center;
+}
+.footerContainer {
+  padding-top: 1.5rem;
+  background: $footer-bgColor;
+  // height: 110px;
+  // position: relative;
+  justify-content: center;
+  // width: 100%;
+}
+
+.footerIconsBox {
+  // position: absolute;
+  // top: 35%;
+  // left: 46%;
+  // transform: translateY(-35%);
+  margin-bottom: 0.5rem;
+}
+.footerIcon {
+  color: white;
+  font-size: $icon-size;
+  margin-right: 1rem;
+  &:hover {
+    color: $icon-footer-color;
+    cursor: pointer;
+  }
+}
+
+.footerText, .copyright{
+  color:white
+}
+.footerText{
+  font-size: 1.2rem;
+}
+.copyright{
+  padding-left:2rem;
+}
+
+.creators{
+  color: $icon-footer-color;
+  font-family: "Lora";
+  font-weight: 400;
+}
