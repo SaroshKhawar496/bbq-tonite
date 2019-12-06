@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 
 const userSchema = exports.schema = new Schema({
     id: {
-        type: String,
+        type: mongoose.SchemaTypes.ObjectId,
         unique: true    
     },
     firstName: {
