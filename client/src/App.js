@@ -9,7 +9,7 @@ import Reservation from "./components/Reservation";
 import Location from "./containers/Location";
 import Menu from "./containers/Menu";
 import Footer from "./components/Footer";
-import Register from "./components/Register";
+import Signup from "./components/Register";
 import CustomerDashboard from "./containers/CustomerDashboard";
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
           <Route path="/dashboard" component={CustomerDashboard} />
 
           
-          {/* <Route path="/register" component={Register} /> */}
+          <Route path="/register" component={Signup} />
         </Switch>
         <Footer />
       </>
