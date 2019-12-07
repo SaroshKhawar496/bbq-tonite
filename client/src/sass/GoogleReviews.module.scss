@@ -2,4 +2,31 @@
 
 .heading {
   padding-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cardHeader{
+  // height: 5rem !important;
+  // background: orange !important;
+}
+
+.cardHeaderText {
+  font-size: 1.3rem;
+  // min-height: 7%;
+  // background: yellow !important
+}
+
+.cardBody {
+  background: white;
+}
+
+
+@media only screen and (min-width: 575px)  and (max-width: 684px) {
+  .cardHeaderText{
+    min-height: 50px;
+    // font-size: 1.2rem;
+  }
+  .cardFooter{
+    min-height: 72px;
+  }
 }
