@@ -1,6 +1,6 @@
 @import "./variables";
 
-.container{
+.container {
   display: flex;
   flex-flow: column;
   // justify-content: center;
@@ -12,7 +12,6 @@
   // height: 110px;
   // position: relative;
   justify-content: center;
-  // width: 100%;
 }
 
 .footerIconsBox {
@@ -32,17 +31,18 @@
   }
 }
 
-.footerText, .copyright{
-  color:white
+.footerText,
+.copyright {
+  color: white;
 }
-.footerText{
+.footerText {
   font-size: 1.2rem;
 }
-.copyright{
-  padding-left:2rem;
+.copyright {
+  padding-left: 2rem;
 }
 
-.creators{
+.creators {
   color: $icon-footer-color;
   font-family: "Lora";
   font-weight: 400;

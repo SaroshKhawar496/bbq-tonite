@@ -10,6 +10,7 @@ import Location from "./containers/Location";
 import Menu from "./containers/Menu";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
+import CustomerDashboard from "./containers/CustomerDashboard";
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
           <Route path="/menu" component={Menu} />
           <Route path="/location" component={Location} />
           <Route path="/reservation" component={Reservation} />
+          {/* protected routes */}
+          <Route path="/dashboard" component={CustomerDashboard} />
+
+          
           {/* <Route path="/register" component={Register} /> */}
         </Switch>
         <Footer />
