@@ -6,7 +6,7 @@ const Schema = mongoose.Schema
 
 const userSchema = exports.schema = new Schema({
     id: {
-        type: mongoose.SchemaTypes.ObjectId,
+        type: String,
         unique: true    
     },
     firstName: {
@@ -27,9 +27,9 @@ const userSchema = exports.schema = new Schema({
         type: String,
         required: true
     },
-    status: String //regular or admin
-    //created: { type: Date, default: Date.now }
-    //reservations: {type: Schema.Types.ObjectId, ref:'Reservation'}
+    status: String, //regular or admin
+    //created: { type: String, default: null },
+    reservations: [{type: String}]
 })
 
 userSchema.pre('save', async function(next) {
