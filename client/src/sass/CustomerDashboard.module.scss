@@ -4,7 +4,21 @@
   padding: 2rem;
 }
 .buttonDiv {
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  margin-bottom: 1.2rem;
+  background: $icon-footer-color;
+
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    background: $icon-footer-color-dark;
+  }
+}
+.buttonDiv1 {
+  display: block;
   flex-direction: column;
   border: 1px solid black;
   margin-bottom: 1.2rem;

@@ -2,23 +2,52 @@ import styles from "../sass/CustomerDashboard.module.scss";
 import React, { Component } from "react";
 import Reservations from "../containers/Reservations";
 import { FaEdit, FaEye, FaJenkins } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 class CustomerDashboard extends Component {
+  reservationsHandler = () => {
+    this.props.history.push("/reservations");
+  };
+  newReservationHandler = () => {
+    this.props.history.push("/reservations/new");
+  };
+  profileHandler = () => {
+    this.props.history.push("/you");
+  };
+
   render() {
     return (
       <div className={styles.container}>
-        <div className={styles.buttonDiv}>
+        <button
+          className={styles.buttonDiv}
+          onClick={this.newReservationHandler}
+        >
           <FaEdit className={styles.dashIcon} />
           <h2 className="text-capitalize">new reservation</h2>
-        </div>
-        <div className={styles.buttonDiv}>
+        </button>
+        <button className={styles.buttonDiv} onClick={this.reservationsHandler}>
+          <FaEdit className={styles.dashIcon} />
+          <h2 className="text-capitalize">upcoming reservations</h2>
+        </button>
+        <button className={styles.buttonDiv} onClick={this.profileHandler}>
+          <FaJenkins className={styles.dashIcon} />
+          <h2 className="text-capitalize">you</h2>
+        </button>
+        {/* <div className={styles.buttonDiv}>
           <FaEye className={styles.dashIcon} />
           <h2 className="text-capitalize">upcoming reservations</h2>
-        </div>
-        <div className={styles.buttonDiv}>
+        </div> */}
+        {/* <div className={styles.buttonDiv}>
           <FaJenkins className={styles.dashIcon} />
           <h2 className="text-capitalize">You</h2>
-        </div>
+        </div> */}
+
+        {/* <Link to="/reservations">
+          <span className={styles.buttonDiv1}>
+            <FaEdit className={styles.dashIcon} />
+            <h2 className="text-capitalize">new reservation</h2>
+          </span>
+        </Link> */}
       </div>
     );
   }
