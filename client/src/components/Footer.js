@@ -7,19 +7,15 @@ const Footer = () => {
     <div className={styles.footerContainer}>
       <div className={styles.container}>
         <div className={styles.footerIconsBox}>
-          <a
-            href="https://www.facebook.com/Bar-B-Q-Tonite-Restaurant-127740740599984/"
+          <a href="https://www.facebook.com/Bar-B-Q-Tonite-Restaurant-127740740599984/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaFacebook className={styles.footerIcon} />
+            rel="noopener noreferrer">
+            <FaFacebook className={styles.footerIcon}/>
           </a>
-          <a
-            href="https://www.instagram.com/explore/locations/304456163343909/bar-b-q-tonite/"
+          <a href="https://www.instagram.com/explore/locations/304456163343909/bar-b-q-tonite/"
             target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaInstagram className={styles.footerIcon} />
+            rel="noopener noreferrer">
+            <FaInstagram className={styles.footerIcon}/>
           </a>
         </div>
         <div >
