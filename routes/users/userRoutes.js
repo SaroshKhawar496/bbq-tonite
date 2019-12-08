@@ -10,13 +10,15 @@ const clientService = require('./clientService')
 const tokenService = require('./tokenService')
 
 const { model: UserModel } = require('./userModel');
+const { request: RequestModel } = require('./requestModel');
 
 // POST /editUsers
 adminRouter.route('/')
 .post(async (req, res, next)=>{
     const { id, firstName, lastName, email, password, status } = req.body;
+    const reservations = ["none"]
     try{
-        const user = new UserModel({ id, firstName, lastName, email, password, status });
+        const user = new UserModel({ id, firstName, lastName, email, password, status, reservations });
         const doc = await user.save();
         res.status(201).json({
             data: [doc]
@@ -27,27 +29,20 @@ adminRouter.route('/')
     }
 })
 
-adminRouter.route('/:userId')
-.put(async (req, res, next) => {
-    const { userId } = req.params
-    const { email, status } = req.body
+adminRouter.route('/createReservation')
+.post(async (req, res, next) => {
+    const { userId, id, seatsReqd, type, bookingDateAndTime, locationId } = req.body
+    const status = "pending"
+    //const userId = req.user.id
     try{
-        console.log(userId)
-        const user = await UserModel.findById(userId)
-        
-        console.log("THE USER" + user)
-        if(user){
-            user = String(user)
-            await user.update({email, status})
-            const doc = await UserModel.findById(userId)
-            res.json(doc.serialize())
-        }
-        else{
-            res.status(404).send()
-        }
-    }
-    catch(err){
-        next(err)
+        const reservation = new RequestModel({ id, userId, seatsReqd, type, bookingDateAndTime, locationId, status });
+        const doc = await reservation.save();
+        res.status(201).json({
+            data: [doc]
+        })
+
+    } catch(e){
+        next(e);
     }
 })
 
