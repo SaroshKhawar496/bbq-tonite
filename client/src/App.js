@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import Signup from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
 import CustomerDashboard from "./containers/CustomerDashboard";
+import NewReservation from "./containers/NewReservation";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/reservation" component={Reservation} />
           {/* protected routes */}
           <Route path="/dashboard" component={CustomerDashboard} />
+          <Route path="/reservations/new" component={NewReservation} />
 
           <Route path="/register" component={Signup} />
           <Route component={ErrorPage} />
