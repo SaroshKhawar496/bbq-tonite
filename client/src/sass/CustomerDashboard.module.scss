@@ -3,6 +3,13 @@
   background-color: $light-bgColor;
   padding: 2rem;
 }
+
+.dashHeader {
+  display: flex;
+  & > h2 {
+    flex: 1;
+  }
+}
 .buttonDiv {
   width: 100%;
   display: flex;
@@ -17,19 +24,19 @@
     background: $icon-footer-color-dark;
   }
 }
-.buttonDiv1 {
-  display: block;
-  flex-direction: column;
-  border: 1px solid black;
-  margin-bottom: 1.2rem;
-  background: $icon-footer-color;
+// .buttonDiv1 {
+//   display: block;
+//   flex-direction: column;
+//   border: 1px solid black;
+//   margin-bottom: 1.2rem;
+//   background: $icon-footer-color;
 
-  align-items: center;
-  &:hover {
-    cursor: pointer;
-    background: $icon-footer-color-dark;
-  }
-}
+//   align-items: center;
+//   &:hover {
+//     cursor: pointer;
+//     background: $icon-footer-color-dark;
+//   }
+// }
 
 .dashIcon {
   width: 2rem;
