@@ -25,6 +25,7 @@ const registerValidation = data => {
       .required(),
     passwordConfirmation: yup
       .string()
+      .required()
       .oneOf([yup.ref("password")], "Passwords don't match!")
   });
 
