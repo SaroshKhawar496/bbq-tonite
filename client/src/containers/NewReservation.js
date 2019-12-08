@@ -15,8 +15,8 @@ export default class NewReservation extends Component {
   state = {
     locations: [],
     numOfSeats: "",
-    locationID: "",
-    time: "11:59",
+    locationId: "",
+    time: "",
     date: ""
   };
   componentDidMount() {
@@ -32,7 +32,21 @@ export default class NewReservation extends Component {
         }));
       });
   }
-  handleChange = e => {};
+  handleChange = e => {
+    console.log(e.target.id);
+    console.log(e.target.value);
+    // value = e.target.value;
+    // console.log(a);
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+    // this.setState(prevState => ({
+    //   ...prevState,
+    //   [e.target.id]: e.target.value
+    // }));
+    // console.log(key, value);
+    console.log(this.state);
+  };
   handleSubmit = e => {
     e.preventDefault();
   };
@@ -50,31 +64,43 @@ export default class NewReservation extends Component {
   };
 
   render() {
-    console.log(this.state.time, this.state.date);
+    console.log(this.state);
     return (
       <section className="container my-5">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="numOfSeats">Seats Required</label>
-            <select className="form-control" id="numOfSeats">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
+            <select
+              className="form-control"
+              id="numOfSeats"
+              onChange={this.handleChange}
+              value={this.state.numOfSeats}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="location">Location</label>
-            <select className="form-control" id="numOfSeats">
-              <option disabled selected value>
+            <label htmlFor="locationId">Location</label>
+            <select
+              className="form-control"
+              id="locationId"
+              onChange={this.handleChange}
+            >
+              <option disabled selected>
                 {" "}
                 -- select a location --{" "}
               </option>
 
               {this.state.locations.map(item => {
                 return (
-                  <option key={item.fields.locationID}>
+                  <option
+                    key={item.fields.locationId}
+                    value={item.fields.locationId}
+                  >
                     {item.fields.unit}-{item.fields.street}, {item.fields.city}
                   </option>
                 );
@@ -101,14 +127,17 @@ export default class NewReservation extends Component {
               onChange={this.handleTime}
               value={this.state.time}
               disableClock={true}
-              minTime="11:59"
-              maxTime="21:00"
+              minTime="13:00"
+              maxTime="22:00"
               maxDetail="minute"
               required={true}
               hourPlaceholder="hh"
               minutePlaceholder="mm"
             />
           </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
         </form>
       </section>
     );
