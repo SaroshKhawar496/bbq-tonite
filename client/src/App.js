@@ -10,6 +10,7 @@ import Location from "./containers/Location";
 import Menu from "./containers/Menu";
 import Footer from "./components/Footer";
 import Signup from "./components/Register";
+import ErrorPage from "./components/ErrorPage";
 import CustomerDashboard from "./containers/CustomerDashboard";
 
 function App() {
@@ -26,8 +27,8 @@ function App() {
           {/* protected routes */}
           <Route path="/dashboard" component={CustomerDashboard} />
 
-          
           <Route path="/register" component={Signup} />
+          <Route component={ErrorPage} />
         </Switch>
         <Footer />
       </>
