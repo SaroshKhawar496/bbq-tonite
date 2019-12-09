@@ -14,18 +14,22 @@ const { registerValidation, loginValidation } = require("./validation");
 
 // new user registration route
 userRouter.route("/").post(async (req, res, next) => {
+  console.log(req.body);
   const { firstName, lastName, email, password } = req.body;
   const { msg, errors } = await registerValidation(req.body);
 
   if (msg) {
     //validation passed
     const emailExist = await UserModel.findOne({ email: req.body.email });
+    console.log("email Exist: ", emailExist);
     if (emailExist) {
+      console.log("email exists if");
       return res
         .status(400)
         .send({ error: "User with this email already exists" });
     }
   } else {
+    console.log(errors);
     return res.status(400).send({ error: errors[0] });
   }
   const user = new UserModel({
@@ -35,9 +39,11 @@ userRouter.route("/").post(async (req, res, next) => {
     password
   });
   try {
+    console.log("saving user: ", user);
     const savedUser = await user.save();
-    res.send({ user: savedUser._id });
+    return res.send({ user: savedUser._id });
   } catch (err) {
+    console.log("error while saving ");
     return res.status(400).send(err);
   }
 });
@@ -70,7 +76,7 @@ userRouter.route("/login").post(async (req, res, next) => {
         }
       }
     } catch (e) {
-      next(e);
+      return res.status(400).send({ error: e });
     }
   } else {
     return res.status(400).send({ error: errors[0] });

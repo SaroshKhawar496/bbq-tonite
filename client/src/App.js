@@ -1,18 +1,20 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+// Compoenents
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
 import Reservation from "./components/Reservation";
-
-import Location from "./containers/Location";
-import Menu from "./containers/Menu";
 import Footer from "./components/Footer";
-import Signup from "./components/Register";
 import ErrorPage from "./components/ErrorPage";
+
+// Containers
+import Menu from "./containers/Menu";
 import CustomerDashboard from "./containers/CustomerDashboard";
 import NewReservation from "./containers/NewReservation";
+import Location from "./containers/Location";
+import SignUp from "./containers/SignUp";
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
           <Route path="/dashboard" component={CustomerDashboard} />
           <Route path="/reservations/new" component={NewReservation} />
 
-          <Route path="/register" component={Signup} />
+          <Route path="/signup" component={SignUp} />
           <Route component={ErrorPage} />
         </Switch>
         <Footer />
