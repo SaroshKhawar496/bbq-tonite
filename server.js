@@ -2,12 +2,14 @@
 
 const mongoose = require("mongoose");
 const express = require("express");
-
-// 1. Create main express intance
-const app = express();
+const cors = require("cors");
 
 const dotenv = require("dotenv");
 dotenv.config();
+
+// 1. Create main express intance
+const app = express();
+app.use(cors());
 
 // 2. Require routes
 const { router: userRoutes } = require("./routes/users/userRoutes");

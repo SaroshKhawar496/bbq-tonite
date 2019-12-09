@@ -21,15 +21,33 @@ class Signup extends Component {
     const headers = {
       "Content-Type": "application/json"
     };
-    axios
-      .post("/api/users/", this.state, { headers: headers })
-      .then(response => {
-        console.log(response.data);
+
+    axios({
+      method: "post",
+      url: "/api/users",
+      data: this.state
+    })
+      .then(res => {
+        console.log(res);
+        // console.log(re);
       })
       .catch(err => {
-        console.log("request has error");
-        console.log(err);
+        //   err.response.data shows the error object
+        // err.response.status shows the response status code
+        console.log(err.response);
+        console.log(err.response.status);
+        console.log(err.response.data);
       });
+
+    // axios
+    //   .post("/api/users/", this.state, { headers: headers })
+    //   .then(response => {
+    //     console.log(response.data);
+    //   })
+    //   .catch(err => {
+    //     console.log("request has error");
+    //     console.log(err);
+    //   });
   };
   render() {
     return (

@@ -15,6 +15,7 @@ import CustomerDashboard from "./containers/CustomerDashboard";
 import NewReservation from "./containers/NewReservation";
 import Location from "./containers/Location";
 import SignUp from "./containers/SignUp";
+import SignIn from "./containers/SignIn";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/reservations/new" component={NewReservation} />
 
           <Route path="/signup" component={SignUp} />
+          <Route path="/signin" component={SignIn} />
           <Route component={ErrorPage} />
         </Switch>
         <Footer />
