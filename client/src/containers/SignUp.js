@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Button, Form, Alert, Col } from "react-bootstrap";
 import axios from "axios";
 
@@ -8,7 +9,9 @@ class Signup extends Component {
     lastName: "",
     email: "",
     password: "",
-    passwordConfirmation: ""
+    passwordConfirmation: "",
+    alert: null,
+    error: null
   };
   handleChange = e => {
     this.setState({
@@ -21,38 +24,69 @@ class Signup extends Component {
     const headers = {
       "Content-Type": "application/json"
     };
+    const userData = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
+      passwordConfirmation: this.state.passwordConfirmation
+    };
 
     axios({
       method: "post",
       url: "/api/users",
-      data: this.state
+      data: userData
     })
       .then(res => {
-        console.log(res);
-        // console.log(re);
+        if (res.status === 200) {
+          this.setState({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            passwordConfirmation: "",
+            alert: "success",
+            error: null
+          });
+        }
+        console.log(res.status);
       })
       .catch(err => {
-        //   err.response.data shows the error object
-        // err.response.status shows the response status code
         console.log(err.response);
         console.log(err.response.status);
-        console.log(err.response.data);
-      });
+        console.log(err.response.data.error);
 
-    // axios
-    //   .post("/api/users/", this.state, { headers: headers })
-    //   .then(response => {
-    //     console.log(response.data);
-    //   })
-    //   .catch(err => {
-    //     console.log("request has error");
-    //     console.log(err);
-    //   });
+        this.setState({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          passwordConfirmation: "",
+          alert: "failed",
+          error: err.response.data.error
+        });
+      });
   };
   render() {
+    let alert = null;
+    if (this.state.alert === "success") {
+      alert = (
+        <Alert className="text-capitalize" variant="success">
+          sign up successful. please <Link to="/signin">Login</Link> to
+          continue.
+        </Alert>
+      );
+    } else if (this.state.alert === "failed") {
+      alert = (
+        <Alert className="text-capitalize" variant="danger">
+          {this.state.error}
+        </Alert>
+      );
+    }
     return (
       <section className="container my-3 ">
         <h2>Sign Up </h2>
+        {alert}
         <Form className="my-4" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>First Name</Form.Label>
