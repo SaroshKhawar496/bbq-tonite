@@ -2,6 +2,7 @@
 .container {
   background-color: $light-bgColor;
   padding: 2rem;
+  min-height: calc(100vh - 140px);
 }
 
 .dashHeader {

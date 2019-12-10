@@ -75,7 +75,7 @@ class SignIn extends Component {
       );
     }
     return (
-      <section className="container my-3 ">
+      <section className="custom container my-3 align-items-center">
         <h2>Sign In </h2>
         {alert}
         <Form className="my-4" onSubmit={this.handleSubmit}>
