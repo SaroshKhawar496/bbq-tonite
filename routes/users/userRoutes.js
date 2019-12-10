@@ -83,6 +83,12 @@ userRouter.route("/login").post(async (req, res, next) => {
   }
 });
 
+// api for checking valid token status for front end protection
+userRouter.use("/checkToken", tokenService.verifyToken);
+userRouter.route("/checkToken").get(async (req, res) => {
+  return res.sendStatus(200);
+});
+
 // added the token verfication for createReservation
 userRouter.use("/reservation/*", tokenService.verifyToken);
 userRouter.route("/reservation/create").post(async (req, res, next) => {

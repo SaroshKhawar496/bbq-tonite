@@ -15,14 +15,16 @@ const issueToken = user => {
 };
 
 const verifyToken = (req, res, next) => {
+  console.log("in verify token: ", req.header);
   const token = req.header("authorization");
-  if (!token) return res.status(401).send({ error: "Access Denied" });
+  if (!token)
+    return res.status(401).send({ error: "Unauthorized: No Token Provided" });
 
   try {
     const verified = jwt.verify(token, SECRET);
     req.user = verified;
   } catch (err) {
-    return res.status(400).send({ error: "Invalid Token" });
+    return res.status(400).send({ error: "Unauthorized: Invalid Token" });
   }
   next();
 };

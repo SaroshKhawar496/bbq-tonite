@@ -17,6 +17,9 @@ import Location from "./containers/Location";
 import SignUp from "./containers/SignUp";
 import SignIn from "./containers/SignIn";
 
+//auth Component
+import withAuth from "./containers/withAuth";
+
 function App() {
   return (
     <BrowserRouter>
@@ -28,12 +31,14 @@ function App() {
           <Route path="/menu" component={Menu} />
           <Route path="/location" component={Location} />
           <Route path="/reservation" component={Reservation} />
-          {/* protected routes */}
-          <Route path="/customerdash" component={CustomerDashboard} />
-          <Route path="/reservations/new" component={NewReservation} />
-
           <Route path="/signup" component={SignUp} />
           <Route path="/signin" component={SignIn} />
+          {/* protected routes */}
+          <Route path="/customerdash" component={withAuth(CustomerDashboard)} />
+          <Route
+            path="/reservations/new"
+            component={withAuth(NewReservation)}
+          />
           <Route component={ErrorPage} />
         </Switch>
         <Footer />

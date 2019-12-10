@@ -27,7 +27,7 @@ class SignIn extends Component {
       email: this.state.email,
       password: this.state.password
     };
-  
+
     axios({
       method: "post",
       url: "/api/users/login",
@@ -44,7 +44,7 @@ class SignIn extends Component {
               error: null
             },
             () => {
-              localStorage.setItem("Authorization", res.data);
+              localStorage.setItem("authorization", res.data);
               this.handleLoginSuccess();
             }
           );
