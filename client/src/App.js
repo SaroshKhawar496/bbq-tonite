@@ -39,8 +39,8 @@ function App() {
             path="/reservations/new"
             component={withAuth(NewReservation)}
           />
-          <Route component={ErrorPage} />
         </Switch>
+        <Route component={ErrorPage} />
         <Footer />
       </>
     </BrowserRouter>
