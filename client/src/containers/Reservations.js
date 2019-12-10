@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Reservation from "../components/Reservation";
+import ReservationItem from "../components/ReservationItem";
 
 export default class Reservations extends Component {
   state = {
@@ -19,7 +19,7 @@ export default class Reservations extends Component {
     return (
       <div>
         {this.state.allReservations.map(item => {
-          return <Reservation key={item.id} />;
+          return <ReservationItem key={item.id} />;
         })}
       </div>
     );
