@@ -91,53 +91,34 @@ userRouter.route("/checkToken").get(async (req, res) => {
 
 // added the token verfication for createReservation
 userRouter.use("/reservation/*", tokenService.verifyToken);
-userRouter.route("/reservation/create").post(async (req, res, next) => {
-  const {
-    userId,
-    id,
-    seatsReqd,
-    type,
-    bookingDateAndTime,
-    locationId
-  } = req.body;
-  const status = "pending";
-  try {
-    const reservation = new RequestModel({
-      id,
-      userId,
-      seatsReqd,
-      type,
-      bookingDateAndTime,
-      locationId,
-      status
-    });
-    const doc = await reservation.save();
-    let updatedReservations;
-    UserModel.find({ id: userId }, function(err, user) {
-      if (!err) {
-        const userReservations = user.reservations;
-        if (userReservations) {
-          updatedReservations = [...userReservations, id];
-        } else {
-          updatedReservations = [id];
-        }
-      } else {
-        throw err;
-      }
-    });
 
-    UserModel.findOneAndUpdate(
-      { id: userId },
-      { $set: { reservations: updatedReservations } },
-      { new: true },
-      function(err, updatedUser) {
-        res.status(201).send(updatedUser);
-      }
-    );
-  } catch (e) {
-    next(e);
-  }
-});
+userRoute.route('/reservation/create')
+.post(async (req, res, next) => {
+    const { userId, id, seatsReqd, type, bookingDateAndTime, locationId } = req.body
+    const status = "pending"
+    try{
+        const reservation = new RequestModel({ id, userId, seatsReqd, type, bookingDateAndTime, locationId, status });
+        const doc = await reservation.save();
+        UserModel.findOne({"id": userId}, function(err, user){
+            if(!err){
+                user.reservations.push(id)
+                user.save(function(err){
+                    if(err){
+                        console.log('err')
+                    }
+                    else{
+                        res.send(201).json("success")
+                    }
+                })
+            }
+            else{
+                throw(err);
+            }
+        })
+    } catch(e){
+        next(e);
+    }
+})
 
 userRouter.route("/reservation/:id/delete").delete(async (req, res, next) => {
   //const userId = req.user.id
@@ -155,18 +136,17 @@ userRouter.route("/reservation/:id/delete").delete(async (req, res, next) => {
   }
 });
 
-userRouter.route("/reservations/view").get(async (req, res, next) => {
-  const theUser = String(req.body.theUserId);
-  try {
-    const views = RequestModel.find({ userId: theUser }).exec(function(
-      err,
-      reservations
-    ) {
-      res.status(201).send(reservations);
-    });
-  } catch (e) {
-    next(e);
-  }
+userRouter.route('/reservations/view')
+.get(async (req, res, next) => {
+    const theUser = String(req.body.theUserId)
+    try{
+        const views = RequestModel.find({"userId": theUser}).exec(function(err, reservations){
+            res.status(201).send(reservations)
+        });
+    } catch(e){
+        next(e);
+    }
+})
 });
 
 userRouter.route("/me").get(async (req, res, next) => {
@@ -179,8 +159,6 @@ userRouter.route("/me").get(async (req, res, next) => {
 });
 
 /* admin routes below */
-//Will not be creating separate router for the admin but will separate with validation later
-
 userRouter
   .route("/:id/reservation/changeStatus")
   .post(async (req, res, next) => {
