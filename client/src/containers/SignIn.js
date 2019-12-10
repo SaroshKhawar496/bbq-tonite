@@ -5,12 +5,17 @@ import axios from "axios";
 class SignIn extends Component {
   state = {
     email: "",
-    password: ""
+    password: "",
+    alert: null,
+    error: null
   };
   handleChange = e => {
     this.setState({
       [e.target.id]: e.target.value
     });
+  };
+  handleLoginSuccess = () => {
+    this.props.history.push("/Customer");
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -18,22 +23,58 @@ class SignIn extends Component {
     const headers = {
       "Content-Type": "application/json"
     };
+    const userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
 
-    axios
-      .post("/api/users/login", this.state, { headers: headers })
-      .then(response => {
-        console.log(response.data);
-        localStorage.setItem("Authorization", response.data);
+    axios({
+      method: "post",
+      url: "/api/users/login",
+      data: userData
+    })
+      .then(res => {
+        if (res.status === 200) {
+          console.log(res.data);
+          this.setState(
+            {
+              email: "",
+              password: "",
+              alert: "success",
+              error: null
+            },
+            () => localStorage.setItem("Authorization", res.data)
+          );
+        }
       })
       .catch(err => {
-        console.log("request has error");
-        console.log(err);
+        this.setState({
+          email: "",
+          password: "",
+          alert: "failed",
+          error: err.response.data.error
+        });
       });
   };
   render() {
+    let alert = null;
+    if (this.state.alert === "success") {
+      alert = (
+        <Alert className="text-capitalize" variant="success">
+          sign in successful.
+        </Alert>
+      );
+    } else if (this.state.alert === "failed") {
+      alert = (
+        <Alert className="text-capitalize" variant="danger">
+          {this.state.error}
+        </Alert>
+      );
+    }
     return (
       <section className="container my-3 ">
         <h2>Sign In </h2>
+        {alert}
         <Form className="my-4" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>Email address</Form.Label>

@@ -29,7 +29,7 @@ function App() {
           <Route path="/location" component={Location} />
           <Route path="/reservation" component={Reservation} />
           {/* protected routes */}
-          <Route path="/dashboard" component={CustomerDashboard} />
+          <Route path="/customerdash" component={CustomerDashboard} />
           <Route path="/reservations/new" component={NewReservation} />
 
           <Route path="/signup" component={SignUp} />
