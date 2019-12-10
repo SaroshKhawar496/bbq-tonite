@@ -15,7 +15,7 @@ class SignIn extends Component {
     });
   };
   handleLoginSuccess = () => {
-    this.props.history.push("/Customer");
+    this.props.history.push("/customerdash");
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -43,7 +43,10 @@ class SignIn extends Component {
               alert: "success",
               error: null
             },
-            () => localStorage.setItem("Authorization", res.data)
+            () => {
+              localStorage.setItem("Authorization", res.data);
+              this.handleLoginSuccess();
+            }
           );
         }
       })

@@ -2,7 +2,7 @@ import styles from "../sass/CustomerDashboard.module.scss";
 import React, { Component } from "react";
 import Reservations from "../containers/Reservations";
 import { FaEdit, FaEye, FaJenkins } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class CustomerDashboard extends Component {
   // reservationsHandler = () => {
@@ -17,6 +17,10 @@ class CustomerDashboard extends Component {
   //   this.props.history.push("/you");
   // };
 
+  logoutHandler = () => {
+    localStorage.removeItem("Authorization");
+    this.props.history.push("/");
+  };
   render() {
     return (
       <div className={styles.container}>
@@ -25,16 +29,20 @@ class CustomerDashboard extends Component {
           <button className="btn btn-warning text-capitalize ">
             Edit Profile
           </button>
+          <button
+            className="btn btn-danger ml-2 text-capitalize"
+            onClick={this.logoutHandler}
+          >
+            Logout
+          </button>
         </div>
 
         <div>
-
           <Link to="/reservations/new">
             <button className="btn my-button btn-secondary text-capitalize my-3">
               Make a new reservation
             </button>
           </Link>
-
         </div>
         <div className="row">
           <div className="col-sm-12 col-md-4 ">
