@@ -129,7 +129,7 @@ userRouter.route("/reservation/:id/delete").delete(async (req, res, next) => {
       err,
       reservation
     ) {
-      res.status(201).send(reservation);
+      res.status(201).send("success");
     });
   } catch (e) {
     next(e);
