@@ -19,7 +19,7 @@ export default class Reservations extends Component {
     return (
       <div>
         {this.state.allReservations.map(item => {
-          return <ReservationItem key={item.id} />;
+          return <ReservationItem key={item.id} res={item} />;
         })}
       </div>
     );

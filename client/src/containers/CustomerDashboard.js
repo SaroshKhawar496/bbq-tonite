@@ -25,7 +25,7 @@ class CustomerDashboard extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.dashHeader}>
-          <h2>Welcome firstname, lastname</h2>
+          <h2 className="text-capitalize">Welcome to your dashbaord</h2>
           <button className="btn btn-warning text-capitalize ">
             Edit Profile
           </button>
