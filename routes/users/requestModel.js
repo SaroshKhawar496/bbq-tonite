@@ -32,7 +32,7 @@ const requestSchema = exports.schema = new Schema({
   status: {
     type: String,
     enum : ['accepted','declined', 'pending', 'cancelled'],
-    required: true
+    required: false
   }
 })
 
