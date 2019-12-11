@@ -63,14 +63,8 @@ userRouter.route("/login").post(async (req, res, next) => {
       } else {
         const match = await user.comparePassword(password);
         if (match) {
-          //   console.log("passwords match");
           const token = tokenService.issueToken(user);
           return res.header("Authorization", token).send(token);
-          // return res.json({
-          //   access_token: token
-          //   //   refresh_token: null,
-          //   //   refresh: "/api/users/login/refresh"
-          // });
         } else {
           return res.status(401).send({ error: "Incorrect Password" });
         }
@@ -121,7 +115,6 @@ userRoute.route('/reservation/create')
 })
 
 userRouter.route("/reservation/:id/delete").delete(async (req, res, next) => {
-  //const userId = req.user.id
   const reservationId = String(req.params.id);
   console.log(reservationId);
   try {
