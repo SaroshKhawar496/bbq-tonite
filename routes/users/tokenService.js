@@ -17,9 +17,9 @@ const issueToken = user => {
 const verifyToken = (req, res, next) => {
   console.log("in verify token: ", req.header);
   const token = req.header("authorization");
-  if (!token)
+  if (!token) {
     return res.status(401).send({ error: "Unauthorized: No Token Provided" });
-
+  }
   try {
     const verified = jwt.verify(token, SECRET);
     req.user = verified;

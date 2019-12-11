@@ -1,10 +1,16 @@
 import React, { Component } from "react";
-import { Form } from "react-bootstrap";
+import { Alert } from "react-bootstrap";
 import { createClient } from "contentful";
 // import { DateTime } from "react-datetime-bootstrap";
-import DatePicker from "react-date-picker";
+// import DatePicker from "react-date-picker";
+import DatePicker from "react-datepicker";
+import moment from "moment";
 import TimePicker from "react-time-picker";
-// import TimePicker from 'rc-time-picker';
+import axios from "axios";
+import { Link } from "react-router-dom";
+
+import "react-datepicker/dist/react-datepicker.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 var client = createClient({
   space: "16wwcbfuof0f",
@@ -14,12 +20,15 @@ var client = createClient({
 export default class NewReservation extends Component {
   state = {
     locations: [],
-    numOfSeats: "",
-    locationId: "",
+    numOfSeats: null,
+    locationId: null,
     time: "",
-    date: ""
+    date: new Date(),
+    error: "",
+    alert: null
   };
   componentDidMount() {
+    console.log("State", this.state);
     client
       .getEntries({
         //not using the following option will get all entries from the space
@@ -49,6 +58,67 @@ export default class NewReservation extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+    console.log(this.state);
+    let dateAndTime = this.state.date + " " + this.state.time;
+    console.log(dateAndTime);
+    axios({
+      method: "post",
+      url: "/api/users/reservation/create",
+      data: {
+        seatsReqd: this.state.numOfSeats,
+
+        bookingDateAndTime: dateAndTime,
+        locationId: this.state.locationId
+      },
+      headers: {
+        authorization: localStorage.getItem("authorization")
+      }
+    })
+      .then(res => {
+        console.log(res.data);
+        if (res.status === 201) {
+          this.setState({
+            locations: [],
+            numOfSeats: "",
+            locationId: null,
+            time: "",
+            date: new Date(),
+            alert: "success",
+            error: null
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err.response);
+        this.setState({
+          locations: [],
+          numOfSeats: "",
+          locationId: null,
+          time: "",
+          date: new Date(),
+          alert: "failed",
+          error: err.response.data.error
+        });
+      });
+    // axios
+    //   .post(
+    //     "/reservation/create",
+    //     {
+    //       seatsReqd: this.state.numOfSeats,
+
+    //       bookingDateAndTime: dateAndTime,
+    //       locationId: this.state.locationId
+    //     },
+    //     {
+    //       authorization: localStorage.getItem("authorization")
+    //     }
+    //   )
+    //   .then(res => {
+    //     console.log("Res after post: ", res);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
   handleTime = time => {
     this.setState(prevState => ({
@@ -57,16 +127,32 @@ export default class NewReservation extends Component {
     }));
   };
   handleDate = date => {
+    console.log("handle date called");
     this.setState(prevState => ({
       ...prevState,
-      date: date
+      date: moment(date).format("DD-MM-YYYY")
     }));
   };
 
   render() {
     console.log(this.state);
+    let alert = null;
+    if (this.state.alert === "success") {
+      alert = (
+        <Alert className="text-capitalize" variant="success">
+          Reservation created! <Link to="/customerdash">Go To Dashboard</Link>
+        </Alert>
+      );
+    } else if (this.state.alert === "failed") {
+      alert = (
+        <Alert className="text-capitalize" variant="danger">
+          {this.state.error}
+        </Alert>
+      );
+    }
     return (
       <section className="container my-5">
+        {alert}
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="numOfSeats">Seats Required</label>
@@ -110,7 +196,8 @@ export default class NewReservation extends Component {
           <div className="form-group">
             <label>Reservation Date</label>
             <br />
-            <DatePicker
+            {/* from react-date-picker */}
+            {/* <DatePicker
               onChange={this.handleDate}
               value={this.state.date}
               required={true}
@@ -118,6 +205,14 @@ export default class NewReservation extends Component {
               monthPlaceholder="mm"
               dayPlaceholder="dd"
               yearPlaceholder="yyyy"
+            /> */}
+            <DatePicker
+              // selected={this.state.date}
+              minDate={new Date()}
+              value={this.state.date}
+              onChange={this.handleDate}
+              name="date"
+              dateFormat="MM-DD-YYYY"
             />
           </div>
           <div className="form-group">

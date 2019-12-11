@@ -86,33 +86,50 @@ userRouter.route("/checkToken").get(async (req, res) => {
 // added the token verfication for createReservation
 userRouter.use("/reservation/*", tokenService.verifyToken);
 
-userRoute.route('/reservation/create')
-.post(async (req, res, next) => {
-    const { userId, id, seatsReqd, type, bookingDateAndTime, locationId } = req.body
-    const status = "pending"
-    try{
-        const reservation = new RequestModel({ id, userId, seatsReqd, type, bookingDateAndTime, locationId, status });
-        const doc = await reservation.save();
-        UserModel.findOne({"id": userId}, function(err, user){
-            if(!err){
-                user.reservations.push(id)
-                user.save(function(err){
-                    if(err){
-                        console.log('err')
-                    }
-                    else{
-                        res.send(201).json("success")
-                    }
-                })
-            }
-            else{
-                throw(err);
-            }
-        })
-    } catch(e){
-        next(e);
-    }
-})
+userRouter.route("/reservation/create").post(async (req, res, next) => {
+  const {
+    seatsReqd,
+    // type,
+    bookingDateAndTime,
+    locationId
+  } = req.body;
+  console.log(req.body);
+  // const status = "pending";
+  console.log(req.user);
+  console.log(req.user.user.id);
+  // return res.send({});
+  try {
+    const reservation = new RequestModel({
+      // id,
+      userId: req.user.user.id,
+      seatsReqd,
+      // type,
+      bookingDateAndTime,
+      locationId
+      // status
+    });
+    console.log("id from user type: ", typeof req.user.user.id);
+    // const doc = await reservation.save();
+    UserModel.findOne({ _id: req.user.user.id }, function(err, user) {
+      console.log(user);
+      if (!err) {
+        const doc = reservation.save();
+        user.reservations.push(doc._id);
+        user.save(function(err) {
+          if (err) {
+            return res.status(500).send({ error: "Something went wrong" });
+          } else {
+            return res.status(201).send({ msg: "Success" });
+          }
+        });
+      } else {
+        throw err;
+      }
+    });
+  } catch (e) {
+    return res.status(500).send({ error: "Something went wrong" });
+  }
+});
 
 userRouter.route("/reservation/:id/delete").delete(async (req, res, next) => {
   const reservationId = String(req.params.id);
@@ -129,17 +146,18 @@ userRouter.route("/reservation/:id/delete").delete(async (req, res, next) => {
   }
 });
 
-userRouter.route('/reservations/view')
-.get(async (req, res, next) => {
-    const theUser = String(req.body.theUserId)
-    try{
-        const views = RequestModel.find({"userId": theUser}).exec(function(err, reservations){
-            res.status(201).send(reservations)
-        });
-    } catch(e){
-        next(e);
-    }
-})
+userRouter.route("/reservations/view").get(async (req, res, next) => {
+  const theUser = String(req.body.theUserId);
+  try {
+    const views = RequestModel.find({ userId: theUser }).exec(function(
+      err,
+      reservations
+    ) {
+      res.status(201).send(reservations);
+    });
+  } catch (e) {
+    next(e);
+  }
 });
 
 userRouter.route("/me").get(async (req, res, next) => {
