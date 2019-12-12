@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import styles from "../sass/GoogleReviews.module.scss";
-import { Card, CardGroup, CardDeck } from "react-bootstrap";
-import Moment from "react-moment";
+import { Card, CardDeck } from "react-bootstrap";
 
 class GoogleReviews extends Component {
   state = {
@@ -12,7 +11,7 @@ class GoogleReviews extends Component {
     axios
       .get("/api/restaurant/reviews")
       .then(res => {
-        console.log(res.data.reviews);
+        // console.log(res.data.reviews);
         let reviews = res.data.reviews;
         this.setState({
           reviews: reviews
@@ -23,7 +22,7 @@ class GoogleReviews extends Component {
       });
   }
   render() {
-    console.log(this.state.reviews);
+    // console.log(this.state.reviews);
     return (
       <div>
         <h1 className={styles.heading}>Reviews</h1>

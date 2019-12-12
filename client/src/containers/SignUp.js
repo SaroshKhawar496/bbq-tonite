@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Button, Form, Alert, Col } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 
 class Signup extends Component {
@@ -20,10 +20,7 @@ class Signup extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    const headers = {
-      "Content-Type": "application/json"
-    };
+
     const userData = {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
@@ -49,12 +46,12 @@ class Signup extends Component {
             error: null
           });
         }
-        console.log(res.status);
+        // console.log(res.status);
       })
       .catch(err => {
-        console.log(err.response);
-        console.log(err.response.status);
-        console.log(err.response.data.error);
+        // console.log(err.response);
+        // console.log(err.response.status);
+        // console.log(err.response.data.error);
 
         this.setState({
           firstName: "",

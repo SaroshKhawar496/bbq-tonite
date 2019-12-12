@@ -185,7 +185,13 @@ export default class NewReservation extends Component {
                 return (
                   <option
                     key={item.fields.locationId}
-                    value={item.fields.locationId}
+                    value={
+                      item.fields.unit +
+                      "-" +
+                      item.fields.street +
+                      "-" +
+                      item.fields.city
+                    }
                   >
                     {item.fields.unit}-{item.fields.street}, {item.fields.city}
                   </option>

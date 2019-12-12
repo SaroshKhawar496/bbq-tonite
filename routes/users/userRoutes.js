@@ -146,14 +146,16 @@ userRouter.route("/reservation/:id/delete").delete(async (req, res, next) => {
   }
 });
 
+userRouter.use("/reservations/*", tokenService.verifyToken);
 userRouter.route("/reservations/view").get(async (req, res, next) => {
-  const theUser = String(req.body.theUserId);
+  const userId = req.user.user.id;
+  console.log("User Id in view routes: ", userId);
   try {
-    const views = RequestModel.find({ userId: theUser }).exec(function(
+    const views = RequestModel.find({ userId: userId }).exec(function(
       err,
       reservations
     ) {
-      res.status(201).send(reservations);
+      return res.status(200).send(reservations);
     });
   } catch (e) {
     next(e);

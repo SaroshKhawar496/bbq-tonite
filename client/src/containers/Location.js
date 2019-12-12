@@ -26,7 +26,7 @@ export default class Location extends Component {
       });
   }
   render() {
-    console.log(this.state.locations);
+    // console.log(this.state.locations);
     const locations = this.state.locations.map(item => (
       <LocationItem
         key={item.sys.id}

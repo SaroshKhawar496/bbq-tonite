@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Form, Alert, Col } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 
 class SignIn extends Component {
@@ -19,10 +19,8 @@ class SignIn extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state);
-    const headers = {
-      "Content-Type": "application/json"
-    };
+    // console.log(this.state);
+
     const userData = {
       email: this.state.email,
       password: this.state.password
@@ -35,7 +33,7 @@ class SignIn extends Component {
     })
       .then(res => {
         if (res.status === 200) {
-          console.log(res.data);
+          // console.log(res.data);
           this.setState(
             {
               email: "",

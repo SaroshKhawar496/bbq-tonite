@@ -93,7 +93,7 @@ export default class Menu extends Component {
       });
   }
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     let drinks, curries, starters, desserts, grill, rice;
 
     drinks = this.state.drinks.map(item => (
@@ -157,7 +157,7 @@ export default class Menu extends Component {
           </div>
         </section>
         <section className={styles.menuBg}>
-          <div className={styles.menuContainer}>
+          <div className="container menuContainer">
             <h2 className={styles.menuCategory}>Starters</h2>
             {starters}
             <h2 className={styles.menuCategory}>Grill</h2>

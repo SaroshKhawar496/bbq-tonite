@@ -11,7 +11,7 @@ const LocationItem = ({
   hours,
   phone
 }) => {
-  console.log(hours);
+  // console.log(hours);
   return (
     <div className={styles.locationItemBox}>
       <div className={styles.addressBox}>
@@ -29,7 +29,7 @@ const LocationItem = ({
       <div className={styles.timingsBox}>
         <h3>Hours</h3>
         {hours.map(item => (
-          <div className={styles.timings}>
+          <div key={Math.random()} className={styles.timings}>
             <span className={styles.day}>{item.day}</span> : {item.hours}
           </div>
         ))}

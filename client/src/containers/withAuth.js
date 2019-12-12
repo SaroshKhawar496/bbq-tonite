@@ -9,9 +9,9 @@ export default function withAuth(ComponentToProtect) {
     };
 
     componentDidMount() {
-      console.log("withAuth called");
+      // console.log("withAuth called");
 
-      console.log(localStorage.getItem("authorization"));
+      // console.log(localStorage.getItem("authorization"));
       axios
         .get("/api/users/checkToken", {
           headers: {
@@ -51,7 +51,7 @@ export default function withAuth(ComponentToProtect) {
         return null;
       }
       if (redirect) {
-        console.log("redirecting to main page");
+        // console.log("redirecting to main page");
         return <Redirect to="/reservation" />;
       }
       return <ComponentToProtect {...this.props} />;

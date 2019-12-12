@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const Reservation = () => {
   return (
-    <div>
+  <div>
       <section className={styles.mainSection}>
         <div className={styles.heroText}>
           <h2 className={styles.mainTitle}>Book Your Reservation</h2>

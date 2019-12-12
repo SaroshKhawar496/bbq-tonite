@@ -1,8 +1,7 @@
 import styles from "../sass/CustomerDashboard.module.scss";
 import React, { Component } from "react";
 import Reservations from "../containers/Reservations";
-import { FaEdit, FaEye, FaJenkins } from "react-icons/fa";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class CustomerDashboard extends Component {
   // reservationsHandler = () => {
@@ -26,9 +25,7 @@ class CustomerDashboard extends Component {
       <div className={styles.container}>
         <div className={styles.dashHeader}>
           <h2 className="text-capitalize">Welcome to your dashbaord</h2>
-          <button className="btn btn-warning text-capitalize ">
-            Edit Profile
-          </button>
+
           <button
             className="btn btn-danger ml-2 text-capitalize"
             onClick={this.logoutHandler}

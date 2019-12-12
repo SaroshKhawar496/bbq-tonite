@@ -42,3 +42,8 @@ html {
 .custom {
   height: calc(87vh - 140px);
 }
+
+.menuContainer {
+  border: 2px solid #ff562d;
+  margin: 2rem;
+}
