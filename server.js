@@ -34,6 +34,12 @@ const MONGO_CONFIG = {
   useUnifiedTopology: true
 };
 
+// deployment to Heroku
+app.use(express.static(path.join(__dirname, "public")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 mongoose
   .connect(mongoURI, { useMongoClient: true })
   .then(async () => {
