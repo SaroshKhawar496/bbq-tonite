@@ -25,6 +25,7 @@ class CustomerDashboard extends Component {
     // this.props.history.push("/");
   };
   render() {
+    console.log("customer dashboard");
     return (
       <div className={styles.container}>
         <div className={styles.dashHeader}>
