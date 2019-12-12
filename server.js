@@ -35,6 +35,12 @@ const MONGO_CONFIG = {
   useUnifiedTopology: true
 };
 
+// deployment to Heroku
+app.use(express.static(path.join(__dirname, "public")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
 mongoose
   .connect(mongoURI, { useMongoClient: true })
   .then(async () => {
@@ -48,11 +54,6 @@ mongoose
     console.error(err);
   });
 
-// deployment to Heroku
-app.use(express.static(path.join(__dirname, "public")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
 // // 7. atlasbDB
 // mongoose
 //   .connect(URL, MONGO_CONFIG)
