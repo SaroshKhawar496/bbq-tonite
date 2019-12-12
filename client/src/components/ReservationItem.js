@@ -5,7 +5,7 @@ const ReservationItem = props => {
   return (
     <div id={props.res._id} className="card mb-2 pl-2">
       <div className="card-body">
-        <h3 className="card-title">Reservation</h3>
+        {/* <h3 className="card-title">Reservation</h3> */}
         <p className="card-text text-capitalize ">
           <span className="font-weight-bold">seats:</span> {props.res.seatsReqd}
         </p>
