@@ -17,7 +17,7 @@ class CustomerDashboard extends Component {
   // };
 
   logoutHandler = () => {
-    localStorage.removeItem("authorization");
+    window.localStorage.removeItem("authorization");
     this.props.history.push("/");
   };
   render() {
