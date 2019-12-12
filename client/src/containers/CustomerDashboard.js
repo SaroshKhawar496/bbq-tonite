@@ -17,10 +17,11 @@ class CustomerDashboard extends Component {
   // };
 
   logoutHandler = () => {
+    console.log('test')
     localStorage.clear();
     // localStorage.removeItem("authorization");
     // delete localStorage.key("authorization");
-    // this.props.history.push("/");
+    this.props.history.push("/");
   };
   render() {
     return (
