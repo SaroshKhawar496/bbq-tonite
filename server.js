@@ -17,6 +17,7 @@ const { router: reviewRoutes } = require("./routes/reviews/reviewRoutes");
 
 // 3. Require conatants
 const { URL, PORT } = require("./utils/constants");
+const mongoURI = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@ds249008.mlab.com:49008/barbqtonite`;
 
 // 4. Ensure that the router is parsing the request body to appropriately format incoming requests
 app.use(express.json());
@@ -33,16 +34,29 @@ const MONGO_CONFIG = {
   useUnifiedTopology: true
 };
 
-// 7. Start server
 mongoose
-  .connect(URL, MONGO_CONFIG)
+  .connect(mongoURI, { useMongoClient: true })
   .then(async () => {
-    console.log(`Connected to database at ${URL}`);
+    console.log(`Connected to database`);
     app.listen(PORT, () => {
       console.log(`Server is running on PORT: ${PORT}`);
     });
   })
   .catch(err => {
-    console.log("aaaa");
+    // console.log("aaaa");
     console.error(err);
   });
+
+// // 7. atlasbDB
+// mongoose
+//   .connect(URL, MONGO_CONFIG)
+//   .then(async () => {
+//     console.log(`Connected to database at ${URL}`);
+//     app.listen(PORT, () => {
+//       console.log(`Server is running on PORT: ${PORT}`);
+//     });
+//   })
+//   .catch(err => {
+//     // console.log("aaaa");
+//     console.error(err);
+//   });
