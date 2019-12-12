@@ -20,9 +20,9 @@ class CustomerDashboard extends Component {
     console.log(e);
     console.log("test");
     // localStorage.clear();
-    // localStorage.removeItem("authorization");
+    localStorage.removeItem("authorization");
     // delete localStorage.key("authorization");
-    // this.props.history.push("/");
+    this.props.history.push("/");
   };
   render() {
     console.log("customer dashboard");
