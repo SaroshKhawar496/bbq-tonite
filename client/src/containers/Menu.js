@@ -3,6 +3,8 @@ import { createClient } from "contentful";
 import MenuItem from "../components/MenuItem";
 import styles from "../sass/Menu.module.scss";
 
+// This is duplicated in a few places (Location.js, Menu.js, NewReservation.js)
+// We should probably abstract it into some kind of constants module, or helper function that each file could import if needs be
 var client = createClient({
   space: "16wwcbfuof0f",
   accessToken: "Qrmlmhfud4wVp78tbQIhulCBklkpgKvwoXBbHXaByyM"
@@ -19,29 +21,31 @@ export default class Menu extends Component {
   };
 
   componentDidMount() {
-    client
+    // This function is fairly repetative, and has some inefficiencies (so many setStates)
+    // We could optimize by using Promise.All:
+    
+    const curriesProm = client
       .getEntries({
         //not using the following option will get all entries from the space
         content_type: "bbqCurries"
       })
-      .then(({ items }) => {
-        this.setState(prevState => ({
-          ...prevState,
-          curries: items
-        }));
-      });
+      
 
-    client
+    const dessertsProm = client
       .getEntries({
         //not using the following option will get all entries from the space
         content_type: "bbqDesserts"
       })
-      .then(({ items }) => {
+      
+      // example:
+      Promise.all([curriesProm, dessertsProm]).then(([curries, desserts]) => {
         this.setState(prevState => ({
           ...prevState,
-          desserts: items
+          curries: curries,
+          desserts: desserts
         }));
-      });
+        // etc. with the remaining calls below
+      })
 
     client
       .getEntries({
@@ -94,6 +98,7 @@ export default class Menu extends Component {
   }
   render() {
     // console.log(this.state);
+    // This is a bit old-school, we should (and probably should) instantiate each variable with a const and only when it is defined
     let drinks, curries, starters, desserts, grill, rice;
 
     drinks = this.state.drinks.map(item => (

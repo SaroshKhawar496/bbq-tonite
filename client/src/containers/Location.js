@@ -27,6 +27,8 @@ export default class Location extends Component {
   }
   render() {
     // console.log(this.state.locations);
+    // Since we're passing in so many properties of an "item", it might be cleaner to pass the entire item and destructure on the other side
+    // ex: <LocationItem key={item.sys.id} item={item} />
     const locations = this.state.locations.map(item => (
       <LocationItem
         key={item.sys.id}
