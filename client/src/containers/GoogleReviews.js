@@ -29,6 +29,7 @@ class GoogleReviews extends Component {
         <CardDeck className="d-flex">
           {this.state.reviews.map(review => {
             if (review.rating >= 4) {
+              // This return block is a good candidate to break out into another component
               return (
                 <Card bg="dark" text="white" key={review.time}>
                   <Card.Header className={styles.cardHeader}>
