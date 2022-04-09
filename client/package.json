@@ -8,7 +8,7 @@
     "contentful": "^7.10.0",
     "date-fns": "^2.8.1",
     "dotenv": "^8.2.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "node-sass": "^4.13.0",
     "rc-time-picker": "^4.0.0-alpha.2",
     "react": "^16.12.0",
